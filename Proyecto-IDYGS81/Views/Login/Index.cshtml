@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>E-commerce</title>
+	<link rel="stylesheet" href="~/css/indexLogin.css">
+	
+</head>
+
+<body>
+	<nav class="navi">
+		<h1>E-Commerce</h1>
+		<ul>
+			<li><a class="nava" asp-controller="Home" asp-action="Index">Home</a></li>
+			<li><a class="nava" asp-controller="Home" asp-action="About">About</a></li>
+			<li><a class="nava" asp-controller="Home" asp-action="Contact">Contact</a></li>
+		</ul>
+		<div class="sign_btn"><a class="nava" asp-controller="Login" asp-action="Index">Sign in</a></div>
+
+	</nav>
+	<header>
+		
+	</header>
+
+	<h2>Empieza a realizar tus compras</h2>
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form action="#">
+				<h1>Crear Cuenta</h1>
+				<div class="social-container">
+					<a href="#" class="sociala"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="sociala"><i class="fab fa-google-plus-g"></i></a>
+					<a href="#" class="sociala"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<span>O usa tu email para suscribirte</span>
+				<input type="text" placeholder="Name" />
+				<input type="email" placeholder="Email" />
+				<input type="password" placeholder="Password" />
+				<button>Registrarse</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form action="#">
+				<h1>Inicia sesión</h1>
+				<div class="social-container">
+					<a  href="#" class="sociala"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="sociala"><i class="fab fa-google-plus-g"></i></a>
+					<a href="#" class="sociala"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<span>o usa tu cuenta</span>
+				<input type="email" placeholder="Email" />
+				<input type="password" placeholder="Password" />
+				<a class="ases" href="#">¿Olvidaste tu contraseña?</a>
+				<button asp-controller ="Usuarios" asp-action="Index">Inicia sesión</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Bienvenido!</h1>
+					<p>Conectate para mantenerte al dia con los nuevos productos</p>
+					<button class="ghost" id="signIn" >Iniciar sesion</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Hola ¡Bienvenido!</h1>
+					<p>Ingresa tus datos personales</p>
+					<button class="ghost" id="signUp">Registrate</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<p>
+			<i class="fa fa-heart"></i>  
+		</p>
+	</footer>
+	<!-- partial -->
+	<script src="~/js/IndexLogin.js"></script>
+
+</body>
+</html>

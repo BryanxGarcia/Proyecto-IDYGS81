@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title> proyecto_idygs81</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/LayoutDashboard.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <!---sidebar-->
+        <div class="sidebar">
+            <div class="sidebar_logo">
+                <img src="img/favicon.png" alt="codingscape">
+                <a href="#">E-commerce</a>
+            </div>
+            <ul class="sidebar_items">
+                <li class="sidebar_items_list">
+                    <a href="#" class="sidebar_nav_item">
+                        <i class='bx bx-home-alt-2'></i>
+                        <p>Home </p>
+                    </a>
+                </li>
+                <li class="sidebar_items_list_info">
+                    <span>Apps</span>
+                </li>
+                <li class="sidebar_items_list">
+                    <a href="#" class="sidebar_nav_item">
+                        <i class='bx bxs-dashboard'></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="sidebar_items_list">
+                    <a href="#" class="sidebar_nav_item">
+                        <i class='bx bxs-calendar'></i>
+                        <p>Calender</p>
+                    </a>
+                </li>
+                <li class="sidebar_items_list">
+                    <a href="#" class="sidebar_nav_item">
+                        <i class='bx bxs-conversation'></i>
+                        <p>Chat</p>
+                    </a>
+                </li>
+                <li class="sidebar_items_list">
+                    <a href="#" class="sidebar_nav_item">
+                        <i class='bx bx-task'></i>
+                        <p>Task</p>
+                    </a>
+                </li>
+                <li class="sidebar_items_list">
+                    <a href="#" class="sidebar_nav_item">
+                        <i class='bx bx-rss'></i>
+                        <p>Social Feed</p>
+                    </a>
+                </li>
+                <li class="sidebar_items_list">
+                    <a href="#" class="sidebar_nav_item">
+                        <i class='bx bxs-envelope'></i>
+                        <p>Email</p>
+                    </a>
+                </li>
+                <li class="sidebar_items_list">
+                    <a href="#" class="sidebar_nav_item">
+                        <i class='bx bx-file'></i>
+                        <p>File Manager</p>
+                    </a>
+                </li>
+                <li class="sidebar_items_list_info">
+                    <span>Items</span>
+                </li>
+                <li class="sidebar_items_list">
+                    <a href="#" class="sidebar_nav_item">
+                        <i class='bx bx-layer'></i>
+                        <p>Settings</p>
+                    </a>
+                </li>
+                <li class="sidebar_items_list">
+                    <a href="#" class="sidebar_nav_item">
+                        <i class='bx bx-log-out'></i>
+                        <p>Logout</p>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-toggle">
+                <i class='bx bxs-chevron-left'></i>
+                <p></p>
+            </div>
+        </div>
+        <!---container-->
+        <div class="container">
+            <p>
+                tabla de contenido
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/Dashboard.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

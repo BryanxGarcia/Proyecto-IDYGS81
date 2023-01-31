@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>E-commerce</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+    <link rel="stylesheet" href="~/css/home.css" />
+</head>
+<body>
+    <nav class="navi">
+        <h1>E-Commerce</h1>
+        <ul>
+            <li><a class="nava" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a class="nava" asp-controller="Home" asp-action="About">About</a></li>
+            <li><a class="nava" asp-controller="home" asp-action="Contact">Contact</a></li>
+        </ul>
+        <div class="sign_btn"><a class="nava" asp-controller="Login" asp-action="Index">Sign in</a></div>
+
+    </nav>
+    <header>
+    </header>
+    <div class="cuerpo">
+    <div id="slider">
+        <div class="slides">
+
+            <!-- First slide -->
+            <div class="slider">
+                <div class="legend"></div>
+                <div class="content">
+                    <div class="content-txt">
+                            <h1 class="hcontent"> Ingresa ahora </h1>
+                            <h2 class="hdos"> Para poder comprar los mejores productos al mejor precio </h2>
+                    </div>
+                </div>
+                <div class="images">
+                    <img src="~/img/bannerv.jpg">
+                 </div>
+             </div>
+
+            <!-- Second slide -->
+            <div class="slider">
+                <div class="legend"></div>
+                <div class="content">
+                    <div class="content-txt">
+                            <h1 class="hcontent"> Dispositivos para el hogar </h1>
+                            <h2 class="hdos"> Productos de todo tipo para cada momento  </h2>
+                    </div>
+                </div>
+                <div class="images">
+                    <img src="~/img/bosina.jpg">
+                </div>
+            </div>
+
+            <!-- Third slide -->
+            <div class="slider">
+                <div class="legend"></div>
+                <div class="content">
+                    <div class="content-txt">
+                            <h1 class="hcontent"> Lo mas nuevo </h1>
+                            <h2 class ="hdos">Mantente al dia con los nuevos y mejorados dispositivos </h2>
+                    </div>
+                </div>
+                <div class="images">
+                    <img src="~/img/producto.png">
+                </div>
+            </div>
+
+            <!-- Fourth slide -->
+            <div class="slider">
+                <div class="legend"></div>
+                <div class="content">
+                    <div class="content-txt">
+                            <h1 class="hcontent"> Para el trabajo </h1>
+                            <h2 class="hdos"> Obten las mejores tecnologias </h2>
+                    </div>
+                </div>
+                <div class="images">
+                    <img src="~/img/codigo.jpg">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+
+<script src="~/js/site.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
