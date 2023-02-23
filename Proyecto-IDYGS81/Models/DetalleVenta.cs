@@ -9,12 +9,6 @@ namespace Proyecto_IDYGS81.Models
         [Key]
         public int PkDetalle { get; set; }
 
-
-        [ForeignKey("Ventas")]
-        public int FKVenta { get; set; }
-        public Venta Ventas { get; set; }
-
-
         [ForeignKey("Producto")]
         public int FKProducto { get; set; }
         public Productos Producto { get; set; }

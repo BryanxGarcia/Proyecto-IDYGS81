@@ -1,0 +1,36 @@
+﻿@model Proyecto_IDYGS81.Models.Categoria
+@{
+    Layout = "_LayoutDashboard";
+}
+<div class="container">
+<div class="container-fluid">
+    <div class="offset-12">
+        <div class="card border">
+            <div class="card-header bg-dark">
+                <h1 class="text-white"><strong>¿Estas seguro de eliminar esta categoria?</strong></h1>
+            </div>
+            <div class="card-body">
+                <form asp-action="Eliminar" method="post">
+                    <div class="form-group">
+                        <label asp-for="NombreCat" class="control-label"></label>
+                        <input asp-for="NombreCat" class="form-control" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Descripcion" class="control-label"></label>
+                        <input asp-for="Descripcion" class="form-control" disabled />
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <button class="btn btn-secondary d-block mx-auto">Eliminar</button>
+                    </div>
+
+                </form>
+
+                <a asp-controller="Categorias" asp-action="Index">Volver</a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</div>

@@ -15,7 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\assets\css\" />
     <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\vendors\general\bootstrap-select\.github\ISSUE_TEMPLATE.md" />
   </ItemGroup>
 
 </Project>

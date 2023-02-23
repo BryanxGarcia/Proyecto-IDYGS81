@@ -1,6 +1,30 @@
-﻿@{
+﻿@model IEnumerable<Proyecto_IDYGS81.Models.Usuarios>
+
+@{
+    ViewData["Title"] = "Listado de usuarios";
+    ViewData["Section"] = "Usuarios";
     Layout = "_LayoutDashboard";
 }
+
+<style>
+    .popover {
+        max-width: 80%; /* Max Width of the popover (depending on the container!) */
+        width: 80%; /* Max Width of the popover (depending on the container!) */
+    }
+
+    /* Ajusta la columna "Nombre" de la tabla en caso de que contenga un registro con cadena extensa, evita que se rompa el diseño responsivo*/
+    .tdAjustado {
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Indica que se muestre la "mano" cuando el cursor pase sobre los elementos del tipo <a>*/
+    a {
+        cursor: pointer;
+    }
+</style>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,4 +32,77 @@
     <title> proyecto_idygs81</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/LayoutDashboard.scss" />
+    <link href="~/assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
+
 </head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="k-portlet" id="k_page_portlet">
+                <div class="k-portlet__head k-portlet__head--lg">
+                    <div class="k-portlet__head-label">
+                        <h3 class="k-portlet__head-title">@ViewData["Title"]</h3>
+                    </div>
+                    <div class="k-portlet__head-toolbar">
+                        <div class="k-portlet__head-toolbar-wrapper">
+                            <span class="d-inline-block" tabindex="0" data-toggle="k-tooltip" data-skin="dark" title="" data-original-title="Crear un @ViewData["Section"]">
+                                <a asp-controller="Usuarios" asp-action="Crear" id="btnCrear" class="btn btn-success" title="Crear un @ViewData["Section"]">
+                                    <i class="la la-plus-circle"></i>
+                                    <span class="k-hidden-mobile">Crear @ViewData["Section"]</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="k-login-v2__body-subtitle">Resultados @Model.Count()</h4>
+                @if (Model.Any())
+                {
+                    <table class="table caption-top">
+                        <caption>Lista de  @ViewData["Section"]</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col"> @Html.DisplayNameFor(x => x.Nombre)</th>
+                                <th scope="col">@Html.DisplayNameFor(x => x.Apellido)</th>
+                                <th scope="col">@Html.DisplayNameFor(x => x.Correo)</th>
+                                <th scope="col">@Html.DisplayNameFor(x => x.Direccion)</th>
+                                <th scope="col">@Html.DisplayNameFor(x => x.Password)</th>
+                                <th scope="col">@Html.DisplayNameFor(x => x.Roles)</th>
+
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>@Html.DisplayFor(x => item.Nombre)</td>
+                                    <td>@Html.DisplayFor(x => item.Apellido)</td>
+                                    <td>@Html.DisplayFor(x => item.Correo)</td>
+                                    <td>@Html.DisplayFor(x => item.Direccion)</td>
+                                    <td typeof="password">@Html.DisplayFor(x => item.Password)</td>
+                                    <td>@Html.DisplayFor(x => item.FKRol)</td>
+                                    <td>
+                                        <a class="btn btn-warning" asp-controller="Usuarios" asp-action="Editar" asp-route-id=@item.PkUsuario> <i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                        <a class="btn btn-danger" asp-controller="Usuarios" asp-action="Eliminar" asp-route-id=@item.PkUsuario> <i class="fa-solid fa-trash"></i> Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="alert alert-light alert-elevate" role="alert">
+                        <div class="alert-icon"><i class=""></i></div>
+                        <div class="alert-text text-center">Sin registros</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

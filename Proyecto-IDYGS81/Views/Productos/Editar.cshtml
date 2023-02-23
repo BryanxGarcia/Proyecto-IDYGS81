@@ -1,0 +1,72 @@
+﻿@model Proyecto_IDYGS81.Models.Productos
+
+@{
+    ViewData["Title"] = "Editar";
+    ViewData["Section"] = "Productos";
+    Layout = "_LayoutDashboard";
+
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title> proyecto_idygs81</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/LayoutDashboard.scss" />
+    <link href="~/assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
+
+</head>
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">@ViewData["Title"] @ViewData["Section"]</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+
+<form method="post" asp-action="Editar">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red">*</font> Nombre</label>
+                        <input type="text" asp-for="NombreProducto" class="form-control" placeholder="Ingresa el nombre" required autocomplete="off" data-rule-maxlength="150" />
+                        <span asp-validation-for="NombreProducto" class="form-text text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red"></font> Descripci&oacute;n</label>
+                        <textarea type="text" asp-for="Descripcion" class="form-control" rows="5" placeholder="Ingresa la descripcion"></textarea>
+                        <span asp-validation-for="Descripcion" class="form-text text-danger"></span>
+                    </div
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red"></font> Categoria</label>
+                        <textarea type="text" asp-for="FKCategoria" class="form-control" rows="5" placeholder="Ingrese la categoria"></textarea>
+                        <span asp-validation-for="FKCategoria" class="form-text text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red"></font> Costo</label>
+                        <textarea type="text" asp-for="PrecioVenta" class="form-control" rows="5" placeholder="Ingresa el costo de venta"></textarea>
+                        <span asp-validation-for="PrecioVenta" class="form-text text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red"></font> Cantidad en inventario</label>
+                        <textarea type="text" asp-for="Inventario" class="form-control" rows="5" placeholder="Ingrese la cantidad total"></textarea>
+                        <span asp-validation-for="Inventario"  class="form-text text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <span class="d-inline-block" tabindex="0" data-toggle="k-tooltip" data-skin="dark" title="" data-original-title="Cancelar">
+            <button type="button" class="btn btn-secondary flaticon-refresh" data-dismiss="modal" title="Cancelar"> Cancelar</button>
+        </span>
+        <span class="d-inline-block" tabindex="0" data-toggle="k-tooltip" data-skin="dark" title="" data-original-title="Editar">
+            <button type="submit" class="btn btn-primary flaticon-folder-1" title="Editar"> Guardar</button>
+        </span>
+    </div>
+</form>
