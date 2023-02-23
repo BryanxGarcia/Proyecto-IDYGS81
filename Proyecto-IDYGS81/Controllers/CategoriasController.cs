@@ -67,6 +67,7 @@ namespace Proyecto_IDYGS81.Controllers
             try
             {
                 Categoria cat = new Categoria();
+                cat = _context.Categorias.Find(id);
                 cat.NombreCat = request.NombreCat;
                 cat.Descripcion = request.Descripcion;
                 _context.Categorias.Update(cat);

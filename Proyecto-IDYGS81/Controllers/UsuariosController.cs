@@ -73,6 +73,7 @@ namespace Proyecto_IDYGS81.Controllers
             try
             {
                 Usuarios res = new Usuarios();
+                res = _context.Usuarios.Find(id);
                 res.Nombre = request.Nombre;
                 res.Apellido = request.Apellido;
                 res.Telefono = request.Telefono;

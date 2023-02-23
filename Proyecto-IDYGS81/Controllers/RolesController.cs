@@ -68,6 +68,7 @@ namespace Proyecto_IDYGS81.Controllers
             try
             {
                 Rol rol = new Rol();
+                rol = _context.Roles.Find(id);
                 rol.Nombre = request.Nombre;
                 rol.Descripcion = request.Descripcion;
                 _context.Roles.Update(rol);

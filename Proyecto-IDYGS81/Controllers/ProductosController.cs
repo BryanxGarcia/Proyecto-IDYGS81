@@ -71,6 +71,7 @@ namespace Proyecto_IDYGS81.Controllers
             try
             {
                 Productos producto = new Productos();
+                producto = _context.Productos.Find(id);
                 producto.NombreProducto = request.NombreProducto;
                 producto.Descripcion = request.Descripcion;
                 producto.Inventario = request.Inventario;
