@@ -13,6 +13,7 @@ namespace Proyecto_IDYGS81.Models
         public int FKUsuario { get; set; }
         public Usuarios Usuario { get; set; }
 
+  
         [ForeignKey("DetalleVenta")]
         public int FKDetalleVenta { get; set; }
         public DetalleVenta DetalleVenta { get; set; }

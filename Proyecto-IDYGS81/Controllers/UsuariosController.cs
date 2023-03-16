@@ -21,6 +21,12 @@ namespace Proyecto_IDYGS81.Controllers
 
             return View(res);
         }
+        public IActionResult IndexCopia()
+        {
+            var res = _context.Usuarios.ToList();
+
+            return View(res);
+        }
         [HttpGet]
         public IActionResult Crear()
         {

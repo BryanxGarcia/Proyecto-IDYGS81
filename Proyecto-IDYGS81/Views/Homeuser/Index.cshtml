@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<Proyecto_IDYGS81.Models.Productos>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetProduct</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-
+ Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/Usuario.css">
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navi">
+        <h1>E-Commerce</h1>
+        <ul>
+            <li><a class="nava" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a class="nava" asp-controller="Home" asp-action="About">About</a></li>
+            <li><a class="nava" asp-controller="Home" asp-action="Contact">Contact</a></li>
+        </ul>
+        <div class="sign_btn"><a asp-controller="Login" asp-action="Index" class="nava">Sign in</a></div>
+
+    </nav>
+    <header>
+    </header>
+
+
+    <div class="fir" style="margin:50px;">
+        <div class="row">
+
+            @foreach (var product in Model)
+            {
+                <div class="col-md-4">
+                    <div class="items-container">
+                        <div class="item">
+                            <div class="diamond-container">
+                                <div class="diamond">
+                                    <div class="diamond-wrapper">
+                                        <div class="diamond-content">$ @product.PrecioVenta</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-wrapper">
+                                <div class="content-wrapper">
+                                    <div class="img-container">
+                                        <div class="bg-square"></div>
+                                        <img class="item-img" src="http://katehummer.com/resources/speaker-alpha.png" />
+                                    </div>
+                                    <div class="content-text">
+                                        <div class="item-name">@product.NombreProducto</div>
+                                        <div class="item-subtext-container">
+                                            <span class="item-subtext subtext-mfr">@product.Descripcion</span> |
+                                            <span class="item-subtext subtext-model"> @product.Descripcion</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a asp-controller="Login" asp-action="Index" class="view-more-btn">View More <span class="view-symbol">+</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

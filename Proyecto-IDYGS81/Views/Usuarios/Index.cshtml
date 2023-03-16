@@ -70,7 +70,6 @@
                                 <th scope="col">@Html.DisplayNameFor(x => x.Correo)</th>
                                 <th scope="col">@Html.DisplayNameFor(x => x.Direccion)</th>
                                 <th scope="col">@Html.DisplayNameFor(x => x.Password)</th>
-                                <th scope="col">@Html.DisplayNameFor(x => x.Roles)</th>
 
                                 <th scope="col">Acciones</th>
                             </tr>
@@ -85,7 +84,6 @@
                                     <td>@Html.DisplayFor(x => item.Correo)</td>
                                     <td>@Html.DisplayFor(x => item.Direccion)</td>
                                     <td typeof="password">@Html.DisplayFor(x => item.Password)</td>
-                                    <td>@Html.DisplayFor(x => item.FKRol)</td>
                                     <td>
                                         <a class="btn btn-warning" asp-controller="Usuarios" asp-action="Editar" asp-route-id=@item.PkUsuario> <i class="fa-solid fa-pen-to-square"></i> Editar</a>
                                         <a class="btn btn-danger" asp-controller="Usuarios" asp-action="Eliminar" asp-route-id=@item.PkUsuario> <i class="fa-solid fa-trash"></i> Eliminar</a>
