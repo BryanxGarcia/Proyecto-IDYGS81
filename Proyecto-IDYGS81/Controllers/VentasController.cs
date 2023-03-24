@@ -5,6 +5,8 @@ using Proyecto_IDYGS81.Models;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Proyecto_IDYGS81.Controllers
 {
@@ -17,25 +19,54 @@ namespace Proyecto_IDYGS81.Controllers
         }
         public IActionResult Index()
         {
-            var res = _context.Ventas.ToList();
+            if (User.Identity.IsAuthenticated)
+            {
+                var res = _context.Ventas.Include(x => x.Usuario).Include(x => x.Producto).ToList();
 
-            return View(res);
+                return View(res);
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
+           
         }
         [HttpGet]
         public IActionResult Crear()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult> Crear(Venta request)
+        public async Task<IActionResult> CrearVenta(int Id)
         {
+            var correo = User.Identity.Name;
+
+            var usuario = (from c in _context.Usuarios
+                          where c.Correo == correo
+                          select c.FKRol);
+            var producto = (from c in _context.Productos
+                           where c.PkProducto == Id
+                           select c.PrecioVenta);
             try
             {
                 Venta venta = new Venta();
-               venta.FKUsuario = request.FKUsuario;
-                venta.FechaVenta = request.FechaVenta;
-                venta.FKDetalleVenta = request.FKDetalleVenta;
+                venta.FKUsuario = usuario.First();
+                venta.FechaVenta = DateTime.Now;
+                venta.FKProducto = Id;
+                venta.Precio = producto.First();
                 _context.Ventas.Add(venta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -48,40 +79,6 @@ namespace Proyecto_IDYGS81.Controllers
 
         }
 
-        [HttpGet]
-        public IActionResult Editar(int id)
-        {
-            try
-            {
-                var venta = _context.Ventas.Find(id);
-                return View(venta);
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Surgio un error " + ex.Message);
-            }
-
-        }
-        [HttpPost]
-        public async Task<IActionResult> Editar(int id, Venta request)
-        {
-            try
-            {
-                Venta venta = new Venta();
-                venta.FKUsuario = request.FKUsuario;
-                venta.FechaVenta = request.FechaVenta;
-                venta.FKDetalleVenta = request.FKDetalleVenta;
-                _context.Ventas.Update(venta);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Surgio un error " + ex.Message);
-            }
-
-        }
         [HttpGet]
         public IActionResult Eliminar(int id)
         {

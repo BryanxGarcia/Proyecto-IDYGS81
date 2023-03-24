@@ -10,8 +10,8 @@ using Proyecto_IDYGS81.Context;
 namespace Proyecto_IDYGS81.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230223181518_nueva23")]
-    partial class nueva23
+    [Migration("20230316115521_holamundo")]
+    partial class holamundo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,35 +43,6 @@ namespace Proyecto_IDYGS81.Migrations
                     b.HasKey("PkCategoria");
 
                     b.ToTable("Categorias");
-                });
-
-            modelBuilder.Entity("Proyecto_IDYGS81.Models.DetalleVenta", b =>
-                {
-                    b.Property<int>("PkDetalle")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("Cantidad")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FKProducto")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Precio")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("RowVersion")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("PkDetalle");
-
-                    b.HasIndex("FKProducto");
-
-                    b.ToTable("DetalleVentas");
                 });
 
             modelBuilder.Entity("Proyecto_IDYGS81.Models.Productos", b =>
@@ -184,7 +155,7 @@ namespace Proyecto_IDYGS81.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("FKDetalleVenta")
+                    b.Property<int>("FKProducto")
                         .HasColumnType("int");
 
                     b.Property<int>("FKUsuario")
@@ -196,27 +167,19 @@ namespace Proyecto_IDYGS81.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Precio")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("RowVersion")
                         .HasColumnType("datetime2");
 
                     b.HasKey("PkVenta");
 
-                    b.HasIndex("FKDetalleVenta");
+                    b.HasIndex("FKProducto");
 
                     b.HasIndex("FKUsuario");
 
                     b.ToTable("Ventas");
-                });
-
-            modelBuilder.Entity("Proyecto_IDYGS81.Models.DetalleVenta", b =>
-                {
-                    b.HasOne("Proyecto_IDYGS81.Models.Productos", "Producto")
-                        .WithMany()
-                        .HasForeignKey("FKProducto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Proyecto_IDYGS81.Models.Productos", b =>
@@ -243,9 +206,9 @@ namespace Proyecto_IDYGS81.Migrations
 
             modelBuilder.Entity("Proyecto_IDYGS81.Models.Venta", b =>
                 {
-                    b.HasOne("Proyecto_IDYGS81.Models.DetalleVenta", "DetalleVenta")
+                    b.HasOne("Proyecto_IDYGS81.Models.Productos", "Producto")
                         .WithMany()
-                        .HasForeignKey("FKDetalleVenta")
+                        .HasForeignKey("FKProducto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -255,7 +218,7 @@ namespace Proyecto_IDYGS81.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("DetalleVenta");
+                    b.Navigation("Producto");
 
                     b.Navigation("Usuario");
                 });

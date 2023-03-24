@@ -1,48 +1,72 @@
 ﻿@model Proyecto_IDYGS81.Models.Productos
+
 @{
+    ViewData["Title"] = "Editar";
+    ViewData["Section"] = "Productos";
     Layout = "_LayoutDashboard";
+
 }
-<div class="container">
-<div class="container-fluid">
-    <div class="offset-12">
-        <div class="card border">
-            <div class="card-header bg-dark">
-                <h1 class="text-white"><strong>¿Estas seguro de eliminar este producto?</strong></h1>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title> proyecto_idygs81</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/LayoutDashboard.scss" />
+    <link href="~/assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
+
+</head>
+<div class="modal-header">
+   <center> <h5 class="modal-title" id="exampleModalLabel">¿Seguro de eliminar este producto?</h5></center>
+
+</div>
+
+
+
+
+
+<form method="post" asp-action="Eliminar">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                 <div class="form-group row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red">*</font> Nombre</label>
+                        <input type="text" asp-for="NombreProducto" class="form-control" placeholder="Ingresa el nombre" disabled  />
+                        <span asp-validation-for="NombreProducto" class="form-text text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red"></font> Descripci&oacute;n</label>
+                        <input type="text" asp-for="Descripcion" class="form-control" placeholder="Ingresa la descripcion" disabled />
+                        <span asp-validation-for="Descripcion" class="form-text text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red"></font> Categoria</label>
+                        <input type="text" asp-for="FKCategoria" class="form-control" placeholder="Ingrese la categoria" disabled />
+                        <span asp-validation-for="FKCategoria" class="form-text text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red"></font> Costo</label>
+                        <input type="text" asp-for="PrecioVenta" class="form-control" placeholder="Ingresa el costo de venta" disabled />
+                        <span asp-validation-for="PrecioVenta" class="form-text text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red"></font> Cantidad en inventario</label>
+                        <input type="text" asp-for="Inventario" class="form-control"  placeholder="Ingrese la cantidad total" disabled />
+                        <span asp-validation-for="Inventario"  class="form-text text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <form asp-action="Eliminar" method="post">
-                    <div class="form-group">
-                        <label asp-for="NombreProducto" class="control-label"></label>
-                        <input asp-for="NombreProducto" class="form-control" disabled />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Descripcion" class="control-label"></label>
-                        <input asp-for="Descripcion" class="form-control" disabled />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Categoria" class="control-label"></label>
-                        <input asp-for="Categoria" class="form-control" disabled />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="PrecioVenta" class="control-label"></label>
-                        <input asp-for="PrecioVenta" class="form-control" disabled />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Inventario" class="control-label"></label>
-                        <input asp-for="Inventario" class="form-control" disabled />
-                    </div>
-
-                    <div class="form-group mt-3">
-                        <button class="btn btn-secondary d-block mx-auto">Eliminar</button>
-                    </div>
-
-                </form>
-
-                <a asp-controller="Productos" asp-action="Index">Volver</a>
-            </div>
-
         </div>
-
     </div>
-</div>
-</div>
+    <div class="modal-footer">
+        <span class="d-inline-block" tabindex="0" data-toggle="k-tooltip" data-skin="dark" title="" data-original-title="Cancelar">
+            <a asp-controller="Productos" asp-action="Index"  type="button" class="btn btn-secondary flaticon-refresh" data-dismiss="modal" title="Cancelar"> Cancelar</a>
+        </span>
+        <span class="d-inline-block" tabindex="0" data-toggle="k-tooltip" data-skin="dark" title="" data-original-title="Editar">
+            <button type="submit" class="btn btn-primary flaticon-folder-1" title="Editar"> Eliminar</button>
+        </span>
+    </div>
+</form>

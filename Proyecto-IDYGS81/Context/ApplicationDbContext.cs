@@ -16,6 +16,5 @@ namespace Proyecto_IDYGS81.Context
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Productos> Productos { get; set; }
         public DbSet<Venta> Ventas { get; set; }
-        public DbSet<DetalleVenta> DetalleVentas { get; set; }
     }
 }

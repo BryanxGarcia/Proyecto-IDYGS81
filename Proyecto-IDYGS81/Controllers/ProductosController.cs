@@ -16,14 +16,33 @@ namespace Proyecto_IDYGS81.Controllers
         }
         public IActionResult Index()
         {
-            var res = _context.Productos.ToList();
+            if (User.Identity.IsAuthenticated)
+            {
+                var res = _context.Productos.ToList();
 
-            return View(res);
+                return View(res);
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
+            
         }
         [HttpGet]
         public IActionResult Crear()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
         }
 
         [HttpPost]
@@ -53,16 +72,26 @@ namespace Proyecto_IDYGS81.Controllers
         [HttpGet]
         public IActionResult Editar(int id)
         {
-            try
+            if (User.Identity.IsAuthenticated)
             {
-                var producto = _context.Productos.Find(id);
-                return View(producto);
+
+                try
+                {
+                    var producto = _context.Productos.Find(id);
+                    return View(producto);
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Surgio un error " + ex.Message);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
 
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Surgio un error " + ex.Message);
-            }
+           
 
         }
         [HttpPost]
@@ -91,17 +120,27 @@ namespace Proyecto_IDYGS81.Controllers
         [HttpGet]
         public IActionResult Eliminar(int id)
         {
-            try
+            if (User.Identity.IsAuthenticated)
             {
-                var producto = _context.Productos.Find(id);
-                return View(producto);
+                try
+                {
+                    var producto = _context.Productos.Find(id);
+                    return View(producto);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception("Surgio un error " + ex.Message);
+                }
 
             }
-            catch (Exception ex)
+            else
             {
+                return RedirectToAction("Index", "Home");
 
-                throw new Exception("Surgio un error " + ex.Message);
             }
+            
 
         }
         [HttpPost]

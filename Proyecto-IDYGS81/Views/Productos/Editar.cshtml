@@ -19,11 +19,10 @@
 
 </head>
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">@ViewData["Title"] @ViewData["Section"]</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+   <center> <h5 class="modal-title" id="exampleModalLabel">@ViewData["Title"] @ViewData["Section"]</h5></center>
+
 </div>
+
 
 
 
@@ -31,30 +30,30 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-md-12">
-                <div class="form-group row">
+                 <div class="form-group row">
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red">*</font> Nombre</label>
-                        <input type="text" asp-for="NombreProducto" class="form-control" placeholder="Ingresa el nombre" required autocomplete="off" data-rule-maxlength="150" />
+                        <input type="text" asp-for="NombreProducto" class="form-control" placeholder="Ingresa el nombre"  />
                         <span asp-validation-for="NombreProducto" class="form-text text-danger"></span>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red"></font> Descripci&oacute;n</label>
-                        <textarea type="text" asp-for="Descripcion" class="form-control" rows="5" placeholder="Ingresa la descripcion"></textarea>
+                        <input type="text" asp-for="Descripcion" class="form-control" rows="5" placeholder="Ingresa la descripcion"></input>
                         <span asp-validation-for="Descripcion" class="form-text text-danger"></span>
-                    </div
+                    </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red"></font> Categoria</label>
-                        <textarea type="text" asp-for="FKCategoria" class="form-control" rows="5" placeholder="Ingrese la categoria"></textarea>
+                        <input type="text" asp-for="FKCategoria" class="form-control" placeholder="Ingrese la categoria"></input>
                         <span asp-validation-for="FKCategoria" class="form-text text-danger"></span>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red"></font> Costo</label>
-                        <textarea type="text" asp-for="PrecioVenta" class="form-control" rows="5" placeholder="Ingresa el costo de venta"></textarea>
+                        <input type="text" asp-for="PrecioVenta" class="form-control" placeholder="Ingresa el costo de venta"></input>
                         <span asp-validation-for="PrecioVenta" class="form-text text-danger"></span>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red"></font> Cantidad en inventario</label>
-                        <textarea type="text" asp-for="Inventario" class="form-control" rows="5" placeholder="Ingrese la cantidad total"></textarea>
+                        <input type="text" asp-for="Inventario" class="form-control"  placeholder="Ingrese la cantidad total"></input>
                         <span asp-validation-for="Inventario"  class="form-text text-danger"></span>
                     </div>
                 </div>
@@ -63,7 +62,7 @@
     </div>
     <div class="modal-footer">
         <span class="d-inline-block" tabindex="0" data-toggle="k-tooltip" data-skin="dark" title="" data-original-title="Cancelar">
-            <button type="button" class="btn btn-secondary flaticon-refresh" data-dismiss="modal" title="Cancelar"> Cancelar</button>
+            <a asp-controller="Productos" asp-action="Index"  type="button" class="btn btn-secondary flaticon-refresh" data-dismiss="modal" title="Cancelar"> Cancelar</a>
         </span>
         <span class="d-inline-block" tabindex="0" data-toggle="k-tooltip" data-skin="dark" title="" data-original-title="Editar">
             <button type="submit" class="btn btn-primary flaticon-folder-1" title="Editar"> Guardar</button>

@@ -17,9 +17,19 @@ namespace Proyecto_IDYGS81.Controllers
 
         public IActionResult Index()
         {
-            var res = _context.Usuarios.ToList();
+            if (User.Identity.IsAuthenticated)
+            {
+                var res = _context.Usuarios.ToList();
 
-            return View(res);
+                return View(res);
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
+            
         }
         public IActionResult IndexCopia()
         {
@@ -30,7 +40,17 @@ namespace Proyecto_IDYGS81.Controllers
         [HttpGet]
         public IActionResult Crear()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
         }
 
         [HttpPost]
@@ -61,16 +81,26 @@ namespace Proyecto_IDYGS81.Controllers
         [HttpGet]
         public IActionResult Editar(int id)
         {
-            try
+            if (User.Identity.IsAuthenticated)
             {
-                var res = _context.Usuarios.Find(id);
-                return View(res);
+
+                try
+                {
+                    var res = _context.Usuarios.Find(id);
+                    return View(res);
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Surgio un error " + ex.Message);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
 
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Surgio un error " + ex.Message);
-            }
+           
 
         }
         [HttpPost]
@@ -100,17 +130,27 @@ namespace Proyecto_IDYGS81.Controllers
         [HttpGet]
         public IActionResult Eliminar(int id)
         {
-            try
+            if (User.Identity.IsAuthenticated)
             {
-                var res = _context.Usuarios.Find(id);
-                return View(res);
+                try
+                {
+                    var res = _context.Usuarios.Find(id);
+                    return View(res);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception("Surgio un error " + ex.Message);
+                }
 
             }
-            catch (Exception ex)
+            else
             {
+                return RedirectToAction("Index", "Home");
 
-                throw new Exception("Surgio un error " + ex.Message);
             }
+           
 
         }
         [HttpPost]

@@ -1,0 +1,77 @@
+﻿@model Proyecto_IDYGS81.Models.Productos
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetProduct</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-
+ Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/Usuario.css">
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<nav class="navi">
+    <h1>E-Commerce</h1>
+    <ul>
+        <li><a class="nava" asp-controller="Homeuser" asp-action="Index">Home</a></li>
+        <li><a class="nava" asp-controller="Homeuser" asp-action="Compras">Mis compras</a></li>
+        <li><a class="nava" asp-controller="Homeuser" asp-action="Perfil">Mi perfil</a></li>
+    </ul>
+    <div class="sign_btn"><a asp-controller="Login" asp-action="Logout" class="nava">Logout</a></div>
+
+</nav>
+<br />
+
+<br />
+
+<br />
+
+<br />
+<div class="modal-header">
+    <center> <h5 class="modal-title" id="exampleModalLabel">¿Quieres comprar este producto?</h5></center>
+
+</div>
+
+<form method="post" asp-action="Crear" id="formCrear">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red">*</font> Nombre</label>
+                        <input type="text" asp-for="NombreProducto" class="form-control" placeholder="Ingresa el nombre" disabled />
+                        <span asp-validation-for="NombreProducto" class="form-text text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red"></font> Descripci&oacute;n</label>
+                        <input type="text" asp-for="Descripcion" class="form-control" placeholder="Ingresa la descripcion" disabled />
+                        <span asp-validation-for="Descripcion" class="form-text text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red"></font> Categoria</label>
+                        <input type="text" asp-for="FKCategoria" class="form-control" placeholder="Ingrese la categoria" disabled />
+                        <span asp-validation-for="FKCategoria" class="form-text text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label><font color="red"></font> Costo</label>
+                        <input type="text" asp-for="PrecioVenta" class="form-control" placeholder="Ingresa el costo de venta" disabled />
+                        <span asp-validation-for="PrecioVenta" class="form-text text-danger"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <span class="d-inline-block" tabindex="0" data-toggle="k-tooltip" data-skin="dark" title="" data-original-title="Cancelar">
+            <a asp-controller="Productos" asp-action="Index" type="button" class="btn btn-secondary flaticon-refresh" data-dismiss="modal" title="Cancelar"> Cancelar</a>
+        </span>
+        <span class="d-inline-block" tabindex="0" data-toggle="k-tooltip" data-skin="dark" title="" data-original-title="Editar">
+            <button type="submit" class="btn btn-primary flaticon-folder-1" title="Editar"> Comprar</button>
+        </span>
+    </div>
+</form>

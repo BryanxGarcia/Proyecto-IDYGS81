@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Proyecto_IDYGS81.Migrations
 {
-    public partial class nueva23 : Migration
+    public partial class holamundo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -93,36 +93,14 @@ namespace Proyecto_IDYGS81.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DetalleVentas",
-                columns: table => new
-                {
-                    PkDetalle = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FKProducto = table.Column<int>(type: "int", nullable: false),
-                    Cantidad = table.Column<int>(type: "int", nullable: false),
-                    Precio = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    RowVersion = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetalleVentas", x => x.PkDetalle);
-                    table.ForeignKey(
-                        name: "FK_DetalleVentas_Productos_FKProducto",
-                        column: x => x.FKProducto,
-                        principalTable: "Productos",
-                        principalColumn: "PkProducto",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Ventas",
                 columns: table => new
                 {
                     PkVenta = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FKUsuario = table.Column<int>(type: "int", nullable: false),
-                    FKDetalleVenta = table.Column<int>(type: "int", nullable: false),
+                    FKProducto = table.Column<int>(type: "int", nullable: false),
+                    Precio = table.Column<int>(type: "int", nullable: false),
                     FechaVenta = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     RowVersion = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -131,10 +109,10 @@ namespace Proyecto_IDYGS81.Migrations
                 {
                     table.PrimaryKey("PK_Ventas", x => x.PkVenta);
                     table.ForeignKey(
-                        name: "FK_Ventas_DetalleVentas_FKDetalleVenta",
-                        column: x => x.FKDetalleVenta,
-                        principalTable: "DetalleVentas",
-                        principalColumn: "PkDetalle",
+                        name: "FK_Ventas_Productos_FKProducto",
+                        column: x => x.FKProducto,
+                        principalTable: "Productos",
+                        principalColumn: "PkProducto",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Ventas_Usuarios_FKUsuario",
@@ -143,11 +121,6 @@ namespace Proyecto_IDYGS81.Migrations
                         principalColumn: "PkUsuario",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DetalleVentas_FKProducto",
-                table: "DetalleVentas",
-                column: "FKProducto");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Productos_FKCategoria",
@@ -160,9 +133,9 @@ namespace Proyecto_IDYGS81.Migrations
                 column: "FKRol");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ventas_FKDetalleVenta",
+                name: "IX_Ventas_FKProducto",
                 table: "Ventas",
-                column: "FKDetalleVenta");
+                column: "FKProducto");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ventas_FKUsuario",
@@ -176,19 +149,16 @@ namespace Proyecto_IDYGS81.Migrations
                 name: "Ventas");
 
             migrationBuilder.DropTable(
-                name: "DetalleVentas");
+                name: "Productos");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "Productos");
+                name: "Categorias");
 
             migrationBuilder.DropTable(
                 name: "Roles");
-
-            migrationBuilder.DropTable(
-                name: "Categorias");
         }
     }
 }

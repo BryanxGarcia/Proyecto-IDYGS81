@@ -43,7 +43,7 @@
             <div class="k-portlet" id="k_page_portlet">
                 <div class="k-portlet__head k-portlet__head--lg">
                     <div class="k-portlet__head-label">
-                        <h3 class="k-portlet__head-title">@ViewData["Title"]</h3>
+                        <center> <h3 class="k-portlet__head-title">@ViewData["Title"]</h3></center>
                     </div>
                     <div class="k-portlet__head-toolbar">
                         <div class="k-portlet__head-toolbar-wrapper">
@@ -57,11 +57,12 @@
                     </div>
                 </div>
 
-                <h4 class="k-login-v2__body-subtitle">Resultados @Model.Count()</h4>
                 @if (Model.Any())
                 {
-                    <table class="table caption-top">
-                        <caption>Lista de  @ViewData["Section"]</caption>
+                    <br />
+
+                    <table id="example" style="width:100%" class="table table-striped table-bordered">
+                        <caption> Resultados @Model.Count() - Lista de  @ViewData["Section"]</caption>
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -71,10 +72,15 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @{
+                                int i = 1;
+
+                            }
+
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <th scope="row"></th>
+                                    <th scope="row">@i</th>
                                     <td>@Html.DisplayFor(x => item.NombreCat)</td>
                                     <td>@Html.DisplayFor(x => item.Descripcion)</td>
                                     <td>
@@ -82,6 +88,8 @@
                                         <a class="btn btn-danger" asp-controller="Categorias" asp-action="Eliminar" asp-route-id=@item.PkCategoria> <i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </td>
                                 </tr>
+                                i = i + 1;
+
                             }
                         </tbody>
                     </table>

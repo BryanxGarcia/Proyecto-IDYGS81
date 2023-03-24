@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Proyecto_IDYGS81
 {
@@ -25,6 +26,14 @@ namespace Proyecto_IDYGS81
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+                option =>
+                {
+                    option.LoginPath = "/Login";
+                    option.Cookie.Name = "Cookie";
+                    
+                }
+                );
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -48,7 +57,11 @@ namespace Proyecto_IDYGS81
 
             app.UseRouting();
 
+
             app.UseAuthorization();
+            app.UseAuthentication();
+
+            app.UseCookiePolicy();
 
             app.UseEndpoints(endpoints =>
             {

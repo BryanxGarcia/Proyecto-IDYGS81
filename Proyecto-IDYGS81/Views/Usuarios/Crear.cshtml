@@ -19,10 +19,7 @@
 
 </head>
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">@ViewData["Title"] @ViewData["Section"]</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+   <center> <h5 class="modal-title" id="exampleModalLabel">@ViewData["Title"] @ViewData["Section"]</h5></center>
 </div>
 
 
@@ -35,37 +32,37 @@
                 <div class="form-group row">
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red">*</font> Nombre</label>
-                        <input type="text" asp-for="Nombre" class="form-control" placeholder="Ingresa el nombre" required autocomplete="off" data-rule-maxlength="150" />
+                        <input type="text" asp-for="Nombre" class="form-control" placeholder="Ingresa el nombre" />
                         <span asp-validation-for="Nombre" class="form-text text-danger"></span>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red"></font> Apellidos:</label>
-                        <textarea type="text" asp-for="Apellido" class="form-control" rows="5" placeholder="Ingresa la descripcion"></textarea>
+                        <input type="text" asp-for="Apellido" class="form-control" placeholder="Ingresa la descripcion" />
                         <span asp-validation-for="Apellido" class="form-text text-danger"></span>
-                    </div
+                    </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red"></font> Direccion:</label>
-                        <textarea type="text" asp-for="Direccion" class="form-control" rows="5" placeholder="Ingrese la categoria"></textarea>
+                        <input type="text" asp-for="Direccion" class="form-control"  placeholder="Ingrese la categoria" />
                         <span asp-validation-for="Direccion" class="form-text text-danger"></span>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red"></font> Correo</label>
-                        <textarea type="text" asp-for="Correo" class="form-control" rows="5" placeholder="Ingresa el costo de venta"></textarea>
+                        <input type="text" asp-for="Correo" class="form-control" placeholder="Ingresa el costo de venta" />
                         <span asp-validation-for="Correo" class="form-text text-danger"></span>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red"></font> Contraseña</label>
-                        <textarea type="text" asp-for="Password" class="form-control" rows="5" placeholder="Ingrese la cantidad total"></textarea>
+                        <input type="text" asp-for="Password" class="form-control"  placeholder="Ingrese la cantidad total" />
                         <span asp-validation-for="Password"  class="form-text text-danger"></span>
                     </div>
                      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red"></font> Telefono</label>
-                        <textarea type="text" asp-for="Telefono" class="form-control" rows="5" placeholder="Ingrese la cantidad total"></textarea>
+                        <input type="text" asp-for="Telefono" class="form-control" placeholder="Ingrese la cantidad total" />
                         <span asp-validation-for="Telefono"  class="form-text text-danger"></span>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <label><font color="red"></font>Rol</label>
-                        <textarea type="text" asp-for="FKRol" class="form-control" rows="5" placeholder="Ingrese la cantidad total"></textarea>
+                        <input type="text" asp-for="FKRol" class="form-control" rows="5" placeholder="Ingrese la cantidad total" />
                         <span asp-validation-for="FKRol"  class="form-text text-danger"></span>
                     </div>
                 </div>

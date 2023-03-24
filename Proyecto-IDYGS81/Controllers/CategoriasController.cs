@@ -30,35 +30,56 @@ namespace Proyecto_IDYGS81.Controllers
         [HttpPost]
         public async Task<IActionResult> Crear(Categoria request)
         {
-            try
-            {
-                Categoria cat = new Categoria();
-                cat.NombreCat = request.NombreCat;
-                cat.Descripcion = request.Descripcion;
-                _context.Categorias.Add(cat);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
+
+            if (User.Identity.IsAuthenticated)
             {
 
-                throw new Exception("Surgio un error " + ex.Message);
+                try
+                {
+                    Categoria cat = new Categoria();
+                    cat.NombreCat = request.NombreCat;
+                    cat.Descripcion = request.Descripcion;
+                    _context.Categorias.Add(cat);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception("Surgio un error " + ex.Message);
+                }
             }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
+            
 
         }
 
         [HttpGet]
         public IActionResult Editar(int id)
         {
-            try
+            if (User.Identity.IsAuthenticated)
             {
-                var cat = _context.Categorias.Find(id);
-                return View(cat);
+
+                try
+                {
+                    var cat = _context.Categorias.Find(id);
+                    return View(cat);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Surgio un error " + ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception("Surgio un error " + ex.Message);
+                return RedirectToAction("Index", "Home");
+
             }
+            
 
         }
         [HttpPost]
@@ -83,17 +104,27 @@ namespace Proyecto_IDYGS81.Controllers
         [HttpGet]
         public IActionResult Eliminar(int id)
         {
-            try
+            if (User.Identity.IsAuthenticated)
             {
-                var cat = _context.Categorias.Find(id);
-                return View(cat);
+                try
+                {
+                    var cat = _context.Categorias.Find(id);
+                    return View(cat);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception("Surgio un error " + ex.Message);
+                }
 
             }
-            catch (Exception ex)
+            else
             {
+                return RedirectToAction("Index", "Home");
 
-                throw new Exception("Surgio un error " + ex.Message);
             }
+            
 
         }
         [HttpPost]

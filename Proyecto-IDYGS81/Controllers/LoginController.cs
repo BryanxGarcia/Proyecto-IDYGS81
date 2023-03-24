@@ -7,6 +7,12 @@ using System;
 using Proyecto_IDYGS81.Context;
 using System.Linq;
 using System.Xml.Linq;
+using System.Security.Claims;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Proyecto_IDYGS81.Controllers
 {
@@ -28,18 +34,43 @@ namespace Proyecto_IDYGS81.Controllers
         [HttpPost]
         public IActionResult LoginUser(string email, string Pass)
         {
+            var contras = Convertir(Pass);
             try
             {
-                var response = _context.Usuarios.Include(z => z.Roles).FirstOrDefault(x => x.Correo == email && x.Password == Pass);
+
+                var response = _context.Usuarios.Include(z => z.Roles).FirstOrDefault(x => x.Correo == email && x.Password == contras);
 
                 if (response != null)
                 {
                     if (response.Roles.Nombre == "Admin")
                     {
+                        var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, email)
+                        };
+                        var identity = new ClaimsIdentity(
+                            claims, CookieAuthenticationDefaults.AuthenticationScheme
+                            );
+                        var principal = new ClaimsPrincipal(identity);
+                        var props = new AuthenticationProperties();
+                        HttpContext.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
                         return RedirectToAction("Index", "Productos");
                     }
                     else
                     {
+                        var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, email)
+                        };
+                        var identity = new ClaimsIdentity(
+                            claims, CookieAuthenticationDefaults.AuthenticationScheme
+                            );
+                        var principal = new ClaimsPrincipal(identity);
+                        var props = new AuthenticationProperties();
+                        HttpContext.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
+
                         return RedirectToAction("Index", "Homeuser");
                     }
                 }
@@ -56,6 +87,14 @@ namespace Proyecto_IDYGS81.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Login");
+
+        }
+
         [HttpPost]
         public async Task<IActionResult> CrearUser(Usuarios user)
         {
@@ -65,8 +104,8 @@ namespace Proyecto_IDYGS81.Controllers
                 res.Nombre = user.Nombre;
                 res.Apellido = user.Apellido;
                 res.Correo = user.Correo;
-                res.Password = user.Password;
-                res.FKRol = 1002;
+                res.Password = Convertir(user.Password);
+                res.FKRol = 2;
                 res.IsDeleted = false;
                 res.RowVersion = DateTime.Now;
                 var respuesta = _context.Usuarios.Add(res);
@@ -89,6 +128,18 @@ namespace Proyecto_IDYGS81.Controllers
                 throw new Exception("Surgio un error " + ex.Message);
             }
 
+        }
+        public static string Convertir(string texto)
+        {
+            StringBuilder sb = new StringBuilder();
+            using (SHA256 hash = SHA256Managed.Create())
+            {
+                Encoding enc = Encoding.UTF8;
+                byte[] result = hash.ComputeHash(enc.GetBytes(texto));
+                foreach (byte b in result)
+                    sb.Append(b.ToString("x2"));
+            }
+            return sb.ToString();
         }
 
     }

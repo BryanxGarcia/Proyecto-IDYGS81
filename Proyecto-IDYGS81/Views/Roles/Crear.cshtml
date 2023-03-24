@@ -19,10 +19,8 @@
 
 </head>
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">@ViewData["Title"] @ViewData["Section"]</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+    <center><h5 class="modal-title" id="exampleModalLabel">@ViewData["Title"] @ViewData["Section"]</h5></center>
+    
 </div>
 
 
@@ -49,7 +47,7 @@
     </div>
     <div class="modal-footer">
         <span class="d-inline-block" tabindex="0" data-toggle="k-tooltip" data-skin="dark" title="" data-original-title="Cancelar">
-            <button type="button" class="btn btn-secondary flaticon-refresh" data-dismiss="modal" title="Cancelar"> Cancelar</button>
+            <a asp-controller="Roles" asp-action="Index"  type="button" class="btn btn-secondary flaticon-refresh" data-dismiss="modal" title="Cancelar"> Cancelar</a>
         </span>
         <span class="d-inline-block" tabindex="0" data-toggle="k-tooltip" data-skin="dark" title="" data-original-title="Guardar">
             <button type="submit" class="btn btn-primary flaticon-folder-1" title="Guardar"> Guardar</button>

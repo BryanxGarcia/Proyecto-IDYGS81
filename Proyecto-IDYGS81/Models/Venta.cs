@@ -14,10 +14,12 @@ namespace Proyecto_IDYGS81.Models
         public Usuarios Usuario { get; set; }
 
   
-        [ForeignKey("DetalleVenta")]
-        public int FKDetalleVenta { get; set; }
-        public DetalleVenta DetalleVenta { get; set; }
+        [ForeignKey("Producto")]
+        public int FKProducto { get; set; }
+        public Productos Producto { get; set; }
 
+
+        public int Precio { get; set; }
         public DateTime FechaVenta { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime? RowVersion { get; set; }
